@@ -1,0 +1,10 @@
+Usage: pgb whoami [OPTIONS]
+
+Display the signed in user
+
+Options:
+
+  -j, --json     Show json response
+  -?, --help     Print usage
+      
+Aliases: me

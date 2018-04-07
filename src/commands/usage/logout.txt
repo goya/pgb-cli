@@ -1,0 +1,14 @@
+Usage: pgb logout
+
+Sign-out of PhoneGap Build. 
+
+Options:
+
+  -?, --help     Print usage
+
+Description:
+
+  This will sign you out of PhoneGap Build. Your authentication token 
+  at ~/.pgbrc will be deleted.
+
+Aliases: sign-out

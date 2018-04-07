@@ -1,0 +1,8 @@
+Usage: pgb log [OPTIONS] id platform
+
+Display the latest build log for the specified app id and platform
+
+Options:
+
+  -j, --json     Show json response
+  -?, --help     Print usage

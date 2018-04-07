@@ -1,0 +1,11 @@
+Usage: pgb rm [OPTIONS] id
+
+Delete the app with the specified app id
+
+Options:
+
+  -f, --force    Skip confirmation
+  -b, --bare     Only print numerical id
+  -?, --help     Print usage
+
+Aliases: delete

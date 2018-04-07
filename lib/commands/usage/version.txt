@@ -1,0 +1,7 @@
+Usage: pgb version [OPTIONS]
+
+Displays the version of pgb
+
+Options:
+
+  -?, --help     Print usage

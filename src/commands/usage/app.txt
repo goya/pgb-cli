@@ -1,0 +1,9 @@
+Usage: pgb app [OPTIONS] id
+
+Show information about the app specified by id
+
+Options:
+
+  -j, --json     Show json response
+  -b, --bare     Only print numerical id
+  -?, --help     Print usage

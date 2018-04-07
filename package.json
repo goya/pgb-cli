@@ -1,0 +1,61 @@
+{
+  "name": "pgb-cli",
+  "version": "1.0.0",
+  "description": "nodeJS CLI to PhoneGap Build",
+  "keywords": [
+    "PhoneGap",
+    "Cordova",
+    "PhoneGap Build",
+    "cli"
+  ],
+  "bugs": {
+    "url": "https://github.com/phonegap-build/pgb-cli/issues"
+  },
+  "bin": {
+    "pgb": "./bin/pgb"
+  },
+  "scripts": {
+    "test": "eslint ./ && jest",
+    "build": "yarn test && rm -rf ./lib && babel ./src --out-dir lib && cp -R ./src/commands/usage ./lib/commands/usage",
+    "package": "yarn build && ./scripts/package.sh"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "pkg": {
+    "scripts": "lib/**/*.js",
+    "assets": [
+      "lib/**/*.txt",
+      "package.json"
+    ]
+  },
+  "preferGlobal": true,
+  "author": "Brett Rudd <brettrudd@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "phonegap-build/pgb-cli"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.10.4",
+    "babel-preset-minify": "^0.3.0",
+    "eslint": "^4.18.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jest": "^21.13.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "jest": "^22.4.0",
+    "jest-plugin-fs": "^2.9.0",
+    "mock-stdin": "^0.3.1",
+    "pkg": "^4.3.0",
+    "std-mocks": "^1.0.1"
+  },
+  "dependencies": {
+    "easy-utf8-table": "^0.2.0",
+    "pgb-api": "^1.0.3",
+    "visualwidth": "^0.1.0"
+  }
+}

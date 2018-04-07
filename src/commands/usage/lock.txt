@@ -1,0 +1,8 @@
+Usage: pgb lock [OPTIONS] platform id
+
+Lock the signing key with the specified platform and id
+
+Options:
+
+  -b, --bare    Only print numerical id
+  -?, --help    Print usage

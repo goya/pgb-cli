@@ -1,0 +1,11 @@
+Usage: pgb ls [OPTIONS]
+
+List your apps
+
+Options:
+
+  -j, --json     Show json response
+  -b, --bare     Only print numerical ids
+  -?, --help     Print usage
+
+Aliases: apps, list

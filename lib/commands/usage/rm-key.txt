@@ -1,0 +1,11 @@
+Usage: pgb rm-key [OPTIONS] platform id
+
+Delete the key with the specified platform and key id
+
+Options:
+
+  -f, --force    Skip confirmation
+  -b, --bare     Only print numerical id
+  -?, --help     Print usage
+
+Aliases: delete-key

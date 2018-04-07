@@ -1,0 +1,19 @@
+Usage: pgb new-key [OPTIONS] platform PROPERTIES...
+
+Add a new signing key
+
+Properties:
+  
+  ios       - title="key title" profile="/path/to/file" key="/path/to/file"
+  android   - title="key title" key="/path/to/file" alias="keystore alias"
+  windows   - title="key title" key="/path/to/file"
+  winphone  - title="key title" publisher_id="publisher id"
+
+Options:
+
+  --no-unlock    Don't prompt to unlock key
+  -j, --json     Show json response
+  -b, --bare     Only print numerical id
+  -?, --help     Print usage
+
+Aliases: add-key, create-key

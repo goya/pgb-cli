@@ -1,0 +1,7 @@
+Usage: pgb help [OPTIONS] command
+
+Show usage of the specified command
+
+Options:
+
+  -?, --help     Print usage

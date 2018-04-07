@@ -1,0 +1,15 @@
+Usage: pgb login
+
+Sign-in to PhoneGap Build. 
+
+Options:
+
+  -?, --help     Print usage
+
+Description:
+
+  You will be prompted for Adobe ID and password. Once authenticated your
+  authentication token will be saved at ~/.pgbrc. Your Adobe ID and 
+  password is not stored.
+
+Aliases: sign-in

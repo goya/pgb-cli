@@ -1,0 +1,9 @@
+Usage: pgb keys [OPTIONS] [platform]
+
+List your signing keys, optionally filtered by platform
+
+Options:
+
+  -j, --json     Show json response
+  -b, --bare     Only print numerical ids
+  -?, --help     Print usage

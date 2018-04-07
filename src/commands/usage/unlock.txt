@@ -1,0 +1,9 @@
+Usage: pgb unlock [OPTIONS] platform id
+
+Unlock the signing key with the specified platform and id.
+
+Options:
+
+  -j, --json     Show json response
+  -b, --bare     Only print numerical id
+  -?, --help     Print usage

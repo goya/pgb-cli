@@ -1,0 +1,9 @@
+Usage: pgb key [OPTIONS] platform id
+
+Show information about the key specified by platform and id
+
+Options:
+
+  -j, --json     Show json response
+  -b, --bare     Only print numerical id
+  -?, --help     Print usage

@@ -1,0 +1,19 @@
+Usage: pgb new [OPTIONS] repository|directory|file [PROPERTIES...]
+
+Add a new app from the specified repository, directory or file 
+
+Properties: 
+
+  phonegap, android-phonegap, ios-phonegap, winphone-phonegap, hydrates, share, 
+  tag, debug, private, android-key, windows-key, ios-key, winphone-key
+
+Options:
+
+  -e, --exit     Exit immediately (don't wait for build)
+  --exit-code    Fail command if build fails
+  --no-progress  Don't show progress
+  -j, --json     Show json response
+  -b, --bare     Only print numerical id
+  -?, --help     Print usage
+
+Aliases: create, add

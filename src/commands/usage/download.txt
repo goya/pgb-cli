@@ -1,0 +1,10 @@
+Usage: pgb download [OPTIONS] id platform [path]
+
+Download the app package for a given app id and platform.
+
+If no path is specified the file will be saved in the current directory.
+
+Options:
+
+  -s, --stdout    Pipe downloaded package to stdout
+  -?, --help      Print usage

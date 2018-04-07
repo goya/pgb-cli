@@ -1,0 +1,12 @@
+Usage: pgb build [OPTIONS] id [platform]
+
+Build an app for all platforms or for the optionally specified platform
+
+Options:
+
+  -e, --exit     Exit immediately (don't wait for build)
+  --exit-code    Fail command if build fails
+  --no-progress  Don't show progress
+  -b, --bare     Only print numerical id
+  -j, --json     Show json response
+  -?, --help     Print usage
