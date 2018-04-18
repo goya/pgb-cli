@@ -1,4 +1,4 @@
-Usage: pgb update [OPTIONS] id [repo|directory|file] [PROPERTIES...]
+Usage: pgb update [OPTIONS] id [repo|directory|file] [PROPERTY=VALUE]...
 
 Update an app and / or an app's properties from the optional repository,
 directory or file

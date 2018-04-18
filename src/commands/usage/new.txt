@@ -1,4 +1,4 @@
-Usage: pgb new [OPTIONS] repository|directory|file [PROPERTIES...]
+Usage: pgb new [OPTIONS] repository|directory|file [PROPERTY=VALUE]...
 
 Add a new app from the specified repository, directory or file 
 

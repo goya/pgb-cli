@@ -1,6 +1,6 @@
 {
   "name": "pgb-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "nodeJS CLI to PhoneGap Build",
   "keywords": [
     "PhoneGap",
@@ -39,7 +39,7 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.10.4",
-    "babel-preset-minify": "^0.3.0",
+    "babel-preset-minify": "^0.4.0",
     "eslint": "^4.18.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.9.0",
@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "easy-utf8-table": "^0.2.0",
-    "pgb-api": "^1.0.3",
+    "pgb-api": "^1.0.4",
     "visualwidth": "^0.1.0"
   }
 }

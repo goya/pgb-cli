@@ -1,8 +1,11 @@
-Usage: pgb pull [OPTIONS] id
+Usage: pgb pull [OPTIONS] id [PROPERTY=VALUE]...
 
 Shortcut to clone and update a repo backed app specified by an id
 
-Variables:
+Properties:
+
+  phonegap, android-phonegap, ios-phonegap, winphone-phonegap, hydrates, share, 
+  tag, debug, private, android-key, windows-key, ios-key, winphone-key
 
 Options:
 
