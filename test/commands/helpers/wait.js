@@ -20,9 +20,9 @@ describe('progress', () => {
   })
 
   test('should resolve with app if already completed', () => {
-    return wait({id: 12, package: 'com.example', status: {}, completed: true})
+    return wait({id: 12, package: 'com.example', status: {}, error: {}, completed: true})
       .then((app) => {
-        expect(app).toEqual({id: 12, package: 'com.example', status: {}, completed: true})
+        expect(app).toEqual({id: 12, package: 'com.example', status: {}, error: {}, completed: true})
         expect(pgb.api.getApp).not.toBeCalled()
         expect(pgb.api.getStatus).not.toBeCalled()
       })
@@ -30,9 +30,9 @@ describe('progress', () => {
 
   test('should resolve with app if exit', () => {
     pgb.opts.exit = true
-    return wait({id: 12, package: 'com.example', status: {}, completed: true})
+    return wait({id: 12, package: 'com.example', status: {}, error: {}, completed: true})
       .then((app) => {
-        expect(app).toEqual({id: 12, package: 'com.example', status: {}, completed: true})
+        expect(app).toEqual({id: 12, package: 'com.example', status: {}, error: {}, completed: true})
         expect(pgb.api.getApp).not.toBeCalled()
         expect(pgb.api.getStatus).not.toBeCalled()
       })
@@ -47,6 +47,17 @@ describe('progress', () => {
         expect(pgb.api.getApp).not.toBeCalled()
         expect(pgb.api.getStatus).not.toBeCalled()
         done()
+      })
+  })
+
+  test('should not reject if exitcode and a successful build', (done) => {
+    pgb.opts.exitcode = true
+    return wait({id: 12, package: 'com.example', status: {}, error: { }, completed: true})
+      .then((app) => {
+        expect(app).toEqual({id: 12, package: 'com.example', status: {}, error: { }, completed: true})
+        expect(pgb.api.getApp).not.toBeCalled()
+        expect(pgb.api.getStatus).not.toBeCalled()
+        expect(stdout.flush().stderr).toHaveLength(1)
       })
   })
 

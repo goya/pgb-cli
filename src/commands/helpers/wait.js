@@ -10,7 +10,7 @@ module.exports = (app) => {
       clearInterval(pollInt)
       clearInterval(printInt)
 
-      if (app.error !== {} && pgb.opts.exitcode) {
+      if (Object.keys(app.error).length > 0 && pgb.opts.exitcode) {
         reject(new Error())
       } else if (app.package) {
         resolve(app)
