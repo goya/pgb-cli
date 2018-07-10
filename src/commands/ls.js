@@ -5,8 +5,7 @@ const has = require('./helpers/validators')
 const toTitleCase = (str) => str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase())
 
 const print = (data) => {
-  let diff = Math.max(process.stdout.columns - 80, 0)
-  let title_length = 15 + diff
+  let title_length = (15 + Math.max(process.stdout.columns - 80, 0)) || 80
   let str = ''
   let bare = []
 
