@@ -11,10 +11,10 @@ describe('login', () => {
     pgb.api.addAuth = jest.fn(() => true)
 
     pgb.session.load = jest.fn(() => { return { authtoken: 'abcd' } })
-    prompt
+    jest.clearAllMocks()
+    prompt.mockReset()
       .mockResolvedValueOnce('user@example.com')
       .mockResolvedValueOnce('password')
-    jest.clearAllMocks()
   })
 
   afterAll(() => {
@@ -27,7 +27,7 @@ describe('login', () => {
       .then(command)
       .then(() => {
         expect(pgb.print).toBeCalledWith({'bare': 12, 'json': {'email': 'user@example.com', 'id': 12}, 'pretty': 'signed in as user@example.com'})
-        expect(pgb.api.me).toBeCalledWith()
+        expect(pgb.api.me).toBeCalled()
         expect(prompt).not.toBeCalled()
       })
   })

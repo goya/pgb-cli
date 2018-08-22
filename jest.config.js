@@ -8,6 +8,7 @@ module.exports = {
     '<rootDir>/test/_helpers/globals.js',
     'jest-plugin-fs/setup'
   ],
+  testURL: 'http://localhost',
   timers: 'fake',
   coverageThreshold: {
     global: {
