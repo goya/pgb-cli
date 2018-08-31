@@ -23,7 +23,7 @@ describe('pull', () => {
       .then(command)
       .then((cmd) => {
         expect(cmd).toEqual('update')
-        expect(pgb.opts).toEqual({ commands: [], 'variables': {'pull': true} })
+        expect(pgb.opts).toEqual({ commands: [], 'variables': { 'pull': true } })
       })
   )
 

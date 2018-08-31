@@ -6,7 +6,7 @@ jest.mock('../../src/commands/helpers/complete')
 describe('log', () => {
   beforeEach(() => {
     require('../_helpers/pgb')({ commands: ['log', '12', 'ios'] })
-    pgb.api.getAppLog = jest.fn(() => Promise.resolve({id: 12, log: 'full log'}))
+    pgb.api.getAppLog = jest.fn(() => Promise.resolve({ id: 12, log: 'full log' }))
   })
 
   afterAll(() => {
@@ -28,7 +28,7 @@ describe('log', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith('full log', {id: 12, log: 'full log'})
+        expect(pgb.print).toBeCalledWith('full log', { id: 12, log: 'full log' })
         expect(pgb.api.getAppLog).toBeCalledWith('12', 'ios')
       })
   })

@@ -40,13 +40,13 @@
     "babel-cli": "^6.24.1",
     "babel-core": "^6.10.4",
     "babel-preset-minify": "^0.4.0",
-    "eslint": "^4.18.1",
-    "eslint-config-standard": "^11.0.0",
+    "eslint": "^5.4.0",
+    "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jest": "^21.13.0",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-standard": "^4.0.0",
     "jest": "^23.5.0",
     "jest-plugin-fs": "^2.9.0",
     "mock-stdin": "^0.3.1",
@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "easy-utf8-table": "^0.2.0",
-    "pgb-api": "^1.0.4",
+    "pgb-api": "^1.0.5",
     "visualwidth": "^0.1.0"
   }
 }

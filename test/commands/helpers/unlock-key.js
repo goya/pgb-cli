@@ -44,7 +44,7 @@ describe('key', () => {
     return key('ios')
       .then((data) => {
         expect(data).toEqual({ 'password': 'input' })
-        expect(prompt).toHaveBeenLastCalledWith('Key Password: ', {mask: true})
+        expect(prompt).toHaveBeenLastCalledWith('Key Password: ', { mask: true })
       })
   })
 
@@ -53,8 +53,8 @@ describe('key', () => {
     return key('android')
       .then((key) => {
         expect(key).toEqual({ 'keystore_pw': 'input', 'key_pw': 'input' })
-        expect(prompt).toHaveBeenCalledWith('Key Password: ', {mask: true})
-        expect(prompt).toHaveBeenCalledWith('Keystore Password: ', {mask: true})
+        expect(prompt).toHaveBeenCalledWith('Key Password: ', { mask: true })
+        expect(prompt).toHaveBeenCalledWith('Keystore Password: ', { mask: true })
       })
   })
 })

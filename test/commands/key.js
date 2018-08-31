@@ -6,7 +6,7 @@ jest.mock('../../src/commands/helpers/complete')
 describe('key', () => {
   beforeEach(() => {
     require('../_helpers/pgb')({ commands: ['key', 'ios', '12'] })
-    pgb.api.getKey = jest.fn(() => Promise.resolve({id: 12}))
+    pgb.api.getKey = jest.fn(() => Promise.resolve({ id: 12 }))
   })
 
   afterAll(() => {
@@ -28,7 +28,7 @@ describe('key', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({'bare': 12, 'json': {'id': 12}, 'pretty': {'id': 12}})
+        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12 }, 'pretty': { 'id': 12 } })
         expect(pgb.api.getKey).toBeCalledWith('ios', '12')
       })
   })

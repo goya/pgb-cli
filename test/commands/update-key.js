@@ -30,8 +30,8 @@ describe('update', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({'bare': 12, 'json': {'id': 12}, 'pretty': 'ios key 12 updated'})
-        expect(pgb.api.updateKey).toBeCalledWith('ios', '12', {'title': 'a title'})
+        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12 }, 'pretty': 'ios key 12 updated' })
+        expect(pgb.api.updateKey).toBeCalledWith('ios', '12', { 'title': 'a title' })
       })
   })
 

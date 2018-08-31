@@ -33,7 +33,7 @@ describe('rm', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({'bare': '12', 'pretty': 'ios key 12 deleted'})
+        expect(pgb.print).toBeCalledWith({ 'bare': '12', 'pretty': 'ios key 12 deleted' })
         expect(pgb.api.deleteKey).toBeCalledWith('ios', '12')
         expect(prompt).not.toHaveBeenCalled()
       })
@@ -43,9 +43,9 @@ describe('rm', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({'bare': '12', 'pretty': 'ios key 12 deleted'})
+        expect(pgb.print).toBeCalledWith({ 'bare': '12', 'pretty': 'ios key 12 deleted' })
         expect(pgb.api.deleteKey).toBeCalledWith('ios', '12')
-        expect(prompt).toHaveBeenCalledWith('are you sure? [yN] ', {confirm: true})
+        expect(prompt).toHaveBeenCalledWith('are you sure? [yN] ', { confirm: true })
       })
   })
 
@@ -57,7 +57,7 @@ describe('rm', () => {
       .catch(() => {
         expect(pgb.print).not.toBeCalled()
         expect(pgb.api.deleteKey).not.toBeCalled()
-        expect(prompt).toHaveBeenCalledWith('are you sure? [yN] ', {confirm: true})
+        expect(prompt).toHaveBeenCalledWith('are you sure? [yN] ', { confirm: true })
         done()
       })
   })

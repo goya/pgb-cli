@@ -22,11 +22,11 @@ describe('login', () => {
   })
 
   test('should skip if already logged in', () => {
-    pgb.api.me = jest.fn(() => Promise.resolve({email: 'user@example.com', id: 12}))
+    pgb.api.me = jest.fn(() => Promise.resolve({ email: 'user@example.com', id: 12 }))
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({'bare': 12, 'json': {'email': 'user@example.com', 'id': 12}, 'pretty': 'signed in as user@example.com'})
+        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'email': 'user@example.com', 'id': 12 }, 'pretty': 'signed in as user@example.com' })
         expect(pgb.api.me).toBeCalled()
         expect(prompt).not.toBeCalled()
       })
@@ -35,11 +35,11 @@ describe('login', () => {
   test('should log in if correct user/pass', () => {
     pgb.api.me = jest.fn()
       .mockRejectedValueOnce(new Error('bad'))
-      .mockResolvedValue({email: 'user@example.com', id: 12})
+      .mockResolvedValue({ email: 'user@example.com', id: 12 })
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({'bare': 12, 'json': {'email': 'user@example.com', 'id': 12}, 'pretty': 'signed in as user@example.com'})
+        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'email': 'user@example.com', 'id': 12 }, 'pretty': 'signed in as user@example.com' })
         expect(pgb.api.getToken).toBeCalledWith('user@example.com', 'password')
         expect(pgb.api.me).toHaveBeenCalledTimes(2)
         expect(prompt).toHaveBeenCalledTimes(2)
@@ -50,11 +50,11 @@ describe('login', () => {
     prompt.mockReset().mockResolvedValueOnce('an_auth_token')
     pgb.api.me = jest.fn()
       .mockRejectedValueOnce(new Error('bad'))
-      .mockResolvedValue({email: 'user@example.com', id: 12})
+      .mockResolvedValue({ email: 'user@example.com', id: 12 })
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({'bare': 12, 'json': {'email': 'user@example.com', 'id': 12}, 'pretty': 'signed in as user@example.com'})
+        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'email': 'user@example.com', 'id': 12 }, 'pretty': 'signed in as user@example.com' })
         expect(pgb.api.getToken).not.toBeCalled()
         expect(pgb.api.me).toHaveBeenCalledTimes(2)
         expect(prompt).toHaveBeenCalledTimes(1)
@@ -65,11 +65,11 @@ describe('login', () => {
     pgb.opts.variables = { auth_token: 'abcd' }
     pgb.api.me = jest.fn()
       .mockRejectedValueOnce(new Error('bad'))
-      .mockResolvedValue({email: 'user@example.com', id: 12})
+      .mockResolvedValue({ email: 'user@example.com', id: 12 })
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({'bare': 12, 'json': {'email': 'user@example.com', 'id': 12}, 'pretty': 'signed in as user@example.com'})
+        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'email': 'user@example.com', 'id': 12 }, 'pretty': 'signed in as user@example.com' })
         expect(pgb.api.getToken).not.toBeCalled()
         expect(pgb.api.me).toHaveBeenCalledTimes(2)
         expect(prompt).not.toHaveBeenCalled()
@@ -80,11 +80,11 @@ describe('login', () => {
     pgb.opts.commands.push('abcd')
     pgb.api.me = jest.fn()
       .mockRejectedValueOnce(new Error('bad'))
-      .mockResolvedValue({email: 'user@example.com', id: 12})
+      .mockResolvedValue({ email: 'user@example.com', id: 12 })
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({'bare': 12, 'json': {'email': 'user@example.com', 'id': 12}, 'pretty': 'signed in as user@example.com'})
+        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'email': 'user@example.com', 'id': 12 }, 'pretty': 'signed in as user@example.com' })
         expect(pgb.api.getToken).not.toBeCalled()
         expect(pgb.api.me).toHaveBeenCalledTimes(2)
         expect(prompt).not.toHaveBeenCalled()

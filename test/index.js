@@ -7,7 +7,7 @@ describe('index', () => {
   beforeAll(() => {
     global.pgb = require('../src/index')()
     jest.spyOn(process, 'exit').mockResolvedValue(true)
-    parseArgs.mockResolvedValue({'commands': ['command'], 'variables': {}})
+    parseArgs.mockResolvedValue({ 'commands': ['command'], 'variables': {} })
   })
 
   beforeEach(() => {
@@ -24,7 +24,7 @@ describe('index', () => {
 
   test('should init api with user agent and process eventEmitter', () => {
     expect(global.pgb.api.defaults.headers).toEqual(
-      {'User-Agent': `pgb-cli/${version} node/${process.version} (${process.platform})`}
+      { 'User-Agent': `pgb-cli/${version} node/${process.version} (${process.platform})` }
     )
     expect(global.pgb.api.defaults.events).toBe(process)
   })
@@ -61,7 +61,7 @@ describe('index', () => {
 
   describe('runCommand', () => {
     beforeAll(() => {
-      jest.spyOn(pgb.session, 'load').mockReturnValue({authtoken: '123'})
+      jest.spyOn(pgb.session, 'load').mockReturnValue({ authtoken: '123' })
       jest.spyOn(pgb, 'debug')
 
       jest.mock('../src/commands/usage')
@@ -89,16 +89,16 @@ describe('index', () => {
     })
 
     test('should update pgb object', () => {
-      return pgb.runCommand({commands: ['foo'], variables: {}})
+      return pgb.runCommand({ commands: ['foo'], variables: {} })
         .then(() => {
-          expect(pgb.api.defaults.headers).toMatchObject({'Authorization': 'token 123'})
+          expect(pgb.api.defaults.headers).toMatchObject({ 'Authorization': 'token 123' })
           expect(pgb.opts.commands).toEqual(['foo'])
           expect(pgb.colours.disabled).toBeFalsy()
         })
     })
 
     test('should disable colours on nocolours', () => {
-      return pgb.runCommand({commands: ['foo'], nocolours: true, variables: {}})
+      return pgb.runCommand({ commands: ['foo'], nocolours: true, variables: {} })
         .then(() => {
           expect(pgb.colours.disabled).toBeTruthy()
         })
@@ -165,7 +165,7 @@ describe('index', () => {
     })
 
     test('should handle 401', () => {
-      pgb.handleError({statusCode: 401})
+      pgb.handleError({ statusCode: 401 })
       expect(pgb.error).toHaveBeenLastCalledWith('not signed in')
       expect(process.exit).toHaveBeenLastCalledWith(1)
     })
@@ -262,7 +262,7 @@ describe('index', () => {
 
       test('should inspect object and pretty print', () => {
         pgb.opts = { debug: true }
-        pgb.debug({foo: 'bar'})
+        pgb.debug({ foo: 'bar' })
         expect(console.error).toHaveBeenLastCalledWith(pgb.colours.debug('{ foo: \'bar\' }'))
       })
 
@@ -277,7 +277,7 @@ describe('index', () => {
       test('should dump string', () => {
         pgb.print('foo')
         expect(console.log).toHaveBeenLastCalledWith('foo')
-        pgb.print({pretty: 'foo'})
+        pgb.print({ pretty: 'foo' })
         expect(console.log).toHaveBeenLastCalledWith('foo')
       })
 
@@ -308,7 +308,7 @@ describe('index', () => {
       test('should inspect if pretty is an object', () => {
         pgb.opts.json = false
         pgb.print({ pretty: { foo: 'bar' }, json: { foo: 'bar' }, bare: 1 })
-        expect(console.log).toHaveBeenLastCalledWith(util.inspect({foo: 'bar'}, { colors: true }))
+        expect(console.log).toHaveBeenLastCalledWith(util.inspect({ foo: 'bar' }, { colors: true }))
       })
     })
   })

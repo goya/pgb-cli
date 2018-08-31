@@ -83,7 +83,7 @@ describe('new', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({'bare': 12, 'json': {'id': 12}, 'pretty': 'ios key 12 added'})
+        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12 }, 'pretty': 'ios key 12 added' })
         let call = pgb.api.addKey.mock.calls[0]
         expect(call[0]).toBe('ios')
         expect(call[1]).toMatchObject({ cert: { path: '/foo' }, profile: { path: '/bar' }, data: { title: 'a title' } })

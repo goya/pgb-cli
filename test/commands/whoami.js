@@ -3,7 +3,7 @@ const command = require('../../src/commands/whoami')
 describe('whoami', () => {
   beforeEach(() => {
     require('../_helpers/pgb')()
-    global.pgb.api.me = jest.fn(() => Promise.resolve({email: 'user@example.com'}))
+    global.pgb.api.me = jest.fn(() => Promise.resolve({ email: 'user@example.com' }))
   })
 
   afterAll(() => {
@@ -25,7 +25,7 @@ describe('whoami', () => {
     return Promise.resolve()
       .then(command)
       .then(() =>
-        expect(pgb.print).toHaveBeenLastCalledWith({'bare': undefined, 'json': {'email': 'user@example.com'}, 'pretty': 'signed in as user@example.com'})
+        expect(pgb.print).toHaveBeenLastCalledWith({ 'bare': undefined, 'json': { 'email': 'user@example.com' }, 'pretty': 'signed in as user@example.com' })
       )
   })
 

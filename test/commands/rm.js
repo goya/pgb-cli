@@ -32,7 +32,7 @@ describe('rm', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({'bare': '12', 'pretty': 'app 12 deleted'})
+        expect(pgb.print).toBeCalledWith({ 'bare': '12', 'pretty': 'app 12 deleted' })
         expect(pgb.api.deleteApp).toBeCalledWith('12')
         expect(prompt).not.toHaveBeenCalled()
       })
@@ -42,9 +42,9 @@ describe('rm', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({'bare': '12', 'pretty': 'app 12 deleted'})
+        expect(pgb.print).toBeCalledWith({ 'bare': '12', 'pretty': 'app 12 deleted' })
         expect(pgb.api.deleteApp).toBeCalledWith('12')
-        expect(prompt).toHaveBeenCalledWith('are you sure? [yN] ', {confirm: true})
+        expect(prompt).toHaveBeenCalledWith('are you sure? [yN] ', { confirm: true })
       })
   })
 
@@ -56,7 +56,7 @@ describe('rm', () => {
       .catch(() => {
         expect(pgb.print).not.toBeCalled()
         expect(pgb.api.deleteApp).not.toBeCalled()
-        expect(prompt).toHaveBeenCalledWith('are you sure? [yN] ', {confirm: true})
+        expect(prompt).toHaveBeenCalledWith('are you sure? [yN] ', { confirm: true })
         done()
       })
   })

@@ -52,7 +52,7 @@ describe('keys', () => {
       .then(() => {
         let call = pgb.print.mock.calls[0]
         expect(call[0].pretty).toMatch(/Platform:[^]*ios[^]*no keys[^]*Platform:[^]*android[^]*no keys[^]*Platform:[^]*windows[^]*no keys[^]*Platform:[^]*winphone[^]*no keys/)
-        expect(call[0].json).toEqual({'keys': {'android': {'all': []}, 'ios': {'all': []}, 'windows': {'all': []}, 'winphone': {'all': []}}})
+        expect(call[0].json).toEqual({ 'keys': { 'android': { 'all': [] }, 'ios': { 'all': [] }, 'windows': { 'all': [] }, 'winphone': { 'all': [] } } })
         expect(call[0].bare).toEqual('')
         expect(pgb.api.getKeys).toHaveBeenLastCalledWith('')
       })
@@ -60,11 +60,11 @@ describe('keys', () => {
 
   test('should print a single platform', () => {
     pgb.opts.commands.push('ios')
-    pgb.api.getKeys = jest.fn(() => Promise.resolve({keys: []}))
+    pgb.api.getKeys = jest.fn(() => Promise.resolve({ keys: [] }))
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toHaveBeenLastCalledWith({'bare': '', 'json': {'keys': []}, 'pretty': '\nPlatform: ios\n\nno keys\n'})
+        expect(pgb.print).toHaveBeenLastCalledWith({ 'bare': '', 'json': { 'keys': [] }, 'pretty': '\nPlatform: ios\n\nno keys\n' })
         expect(pgb.api.getKeys).toHaveBeenLastCalledWith('ios')
       })
   })

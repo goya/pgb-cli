@@ -8,7 +8,7 @@ describe('ls', () => {
     require('../_helpers/pgb')({ commands: [ 'ls' ] })
     apps = { apps: [
       { id: 1, title: '123456789012345678901234567890', status: { ios: 'error', android: 'skip', winphone: 'pending' }, last_build: '4 march 1994', foo: 'bar', zig: null },
-      { id: 12, status: { ios: 'error', android: 'unknown', winphone: 'complete' }, foo: {a: 12} }
+      { id: 12, status: { ios: 'error', android: 'unknown', winphone: 'complete' }, foo: { a: 12 } }
     ] }
     pgb.api.getApps = jest.fn(() => Promise.resolve(apps))
     process.stdout.columns = 10
@@ -69,7 +69,7 @@ describe('ls', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toHaveBeenLastCalledWith({'bare': '', 'json': {'apps': []}, 'pretty': '\nno apps\n'})
+        expect(pgb.print).toHaveBeenLastCalledWith({ 'bare': '', 'json': { 'apps': [] }, 'pretty': '\nno apps\n' })
         expect(pgb.api.getApps).toHaveBeenCalled()
       })
   })

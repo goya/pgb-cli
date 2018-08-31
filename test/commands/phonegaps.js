@@ -21,7 +21,7 @@ describe('log', () => {
       .then(() => {
         let call = pgb.print.mock.calls[0]
         expect(call[0]).toMatch(/Default:[^]*foo[^]*bar[^]*foo/m)
-        expect(call[1]).toEqual({'by_phonegap': {'bar': {}, 'foo': {}}, 'default': 'foo'})
+        expect(call[1]).toEqual({ 'by_phonegap': { 'bar': {}, 'foo': {} }, 'default': 'foo' })
         expect(pgb.api.currentSupport).toHaveBeenCalled()
       })
   })

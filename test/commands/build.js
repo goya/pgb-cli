@@ -9,7 +9,7 @@ jest.mock('../../src/commands/helpers/complete')
 describe('build', () => {
   beforeEach(() => {
     require('../_helpers/pgb')({ commands: ['build', '12'] })
-    pgb.api.buildApp = jest.fn(() => Promise.resolve({id: 12}))
+    pgb.api.buildApp = jest.fn(() => Promise.resolve({ id: 12 }))
   })
 
   afterAll(() => {
@@ -34,7 +34,7 @@ describe('build', () => {
       .then((cmd) => {
         expect(pgb.api.buildApp).toBeCalledWith('12', '')
         expect(wait).toBeCalledWith({ id: 12 })
-        expect(pgb.print).toBeCalledWith({'bare': 12, 'json': {'id': 12, 'wait': true}})
+        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12, 'wait': true } })
       })
   })
 
@@ -45,7 +45,7 @@ describe('build', () => {
       .then((cmd) => {
         expect(pgb.api.buildApp).toBeCalledWith('12', 'ios')
         expect(wait).toBeCalledWith({ id: 12 })
-        expect(pgb.print).toBeCalledWith({'bare': 12, 'json': {'id': 12, 'wait': true}})
+        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12, 'wait': true } })
       })
   })
 

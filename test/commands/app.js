@@ -9,7 +9,7 @@ jest.mock('../../src/commands/helpers/complete')
 describe('app', () => {
   beforeEach(() => {
     require('../_helpers/pgb')({ commands: ['app', '12'] })
-    pgb.api.getApp = jest.fn(() => Promise.resolve({id: 12}))
+    pgb.api.getApp = jest.fn(() => Promise.resolve({ id: 12 }))
   })
 
   afterEach(() => {
@@ -31,7 +31,7 @@ describe('app', () => {
     return Promise.resolve()
       .then(command)
       .then((app) => {
-        expect(pgb.print).toBeCalledWith({'bare': 12, 'json': {'id': 12}, 'pretty': {'id': 12}})
+        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12 }, 'pretty': { 'id': 12 } })
       })
   })
 

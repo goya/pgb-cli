@@ -10,7 +10,7 @@ describe('complete', () => {
   describe('app', () => {
     test('should return app ids', () => {
       pgb.opts.idx = 1
-      pgb.api.getApps = jest.fn().mockResolvedValue({ apps: [{id: 12}, {id: 13}] })
+      pgb.api.getApps = jest.fn().mockResolvedValue({ apps: [{ id: 12 }, { id: 13 }] })
       return Promise.resolve()
         .then(complete.app)
         .then((result) => {
@@ -31,7 +31,7 @@ describe('complete', () => {
   describe('appAndPlatform', () => {
     test('should return app ids', () => {
       pgb.opts.idx = 1
-      pgb.api.getApps = jest.fn().mockResolvedValue({ apps: [{id: 12}, {id: 13}] })
+      pgb.api.getApps = jest.fn().mockResolvedValue({ apps: [{ id: 12 }, { id: 13 }] })
       return Promise.resolve()
         .then(complete.appAndPlatform)
         .then((result) => {

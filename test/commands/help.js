@@ -18,7 +18,7 @@ describe('pull', () => {
       .then(command)
       .then((cmd) => {
         expect(cmd).toEqual('usage')
-        expect(pgb.opts).toEqual({'commands': ['bar'], 'variables': {}})
+        expect(pgb.opts).toEqual({ 'commands': ['bar'], 'variables': {} })
       })
   })
 

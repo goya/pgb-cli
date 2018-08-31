@@ -39,7 +39,7 @@ describe('update', () => {
       .then(command)
       .then(() => {
         expect(pgb.print).toBeCalledWith('app 12 updated')
-        expect(pgb.api.updateApp).toBeCalledWith('12', 'org/repo', {'hydrates': true, 'keys': {}})
+        expect(pgb.api.updateApp).toBeCalledWith('12', 'org/repo', { 'hydrates': true, 'keys': {} })
         expect(BindTransfer).toBeCalled()
       })
   })

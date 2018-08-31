@@ -32,9 +32,9 @@ describe('unlock', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({'bare': 12, 'json': {'id': 12}, 'pretty': 'ios key 12 unlocked'})
+        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12 }, 'pretty': 'ios key 12 unlocked' })
         expect(pgb.api.updateKey).toBeCalledWith('ios', '12', { data: { password: 'password' } })
-        expect(prompt).toHaveBeenCalledWith('Key Password: ', {'mask': true})
+        expect(prompt).toHaveBeenCalledWith('Key Password: ', { 'mask': true })
       })
   })
 

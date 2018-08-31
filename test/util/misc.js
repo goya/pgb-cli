@@ -12,7 +12,7 @@ describe('merge', () => {
   test('handles null values', () => {
     expect(misc.merge(null)).toEqual({})
     expect(misc.merge(null, null)).toEqual({})
-    expect(misc.merge(null, { a: true }, null)).toEqual({a: true})
+    expect(misc.merge(null, { a: true }, null)).toEqual({ a: true })
   })
 
   test('returns a clone of all objects', () => {
@@ -21,11 +21,11 @@ describe('merge', () => {
   })
 
   test('last one wins', () => {
-    expect(misc.merge({a: 1}, {a: 2}, {a: 3})).toEqual({ a: 3 })
+    expect(misc.merge({ a: 1 }, { a: 2 }, { a: 3 })).toEqual({ a: 3 })
   })
 
   test('does nested merging', () => {
-    expect(misc.merge({a: { c: [], b: 1 }}, { a: { b: 2 } }, { a: { c: 3 } })).toEqual({ a: { b: 2, c: 3 } })
+    expect(misc.merge({ a: { c: [], b: 1 } }, { a: { b: 2 } }, { a: { c: 3 } })).toEqual({ a: { b: 2, c: 3 } })
   })
 })
 
