@@ -4,7 +4,8 @@ module.exports.getData = (repoOrFile) => {
   let data = { keys: {} }
 
   payload.addVariables(
-    data, 'hydrates', 'share', 'tag', 'debug', 'private', 'pull', 'zip'
+    data, 'hydrates', 'share', 'tag', 'debug', 'private', 'pull', 'zip', 'android-phonegap:android_phonegap_version',
+    'winphone-phonegap:winphone_phonegap_version', 'ios-phonegap:ios_phonegap_version', 'phonegap:phonegap_version'
   )
 
   payload.addVariables(
