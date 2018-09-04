@@ -16,14 +16,15 @@ describe('build', () => {
     delete global.pgb
   })
 
-  test('should validate', () => {
+  test('with platforms', () => {
     pgb.opts.commands.push('ios')
+    pgb.opts.commands.push('android')
     return Promise.resolve()
       .then(command)
       .then(() => {
         expect(validators.signed_in).toBeCalled()
         expect(validators.args).toHaveBeenLastCalledWith(1)
-        expect(validators.platform).toHaveBeenLastCalledWith('ios', false)
+        expect(validators.platform).toHaveBeenCalledTimes(2)
         expect(validators.id).toHaveBeenLastCalledWith('12')
       })
   })
@@ -32,7 +33,7 @@ describe('build', () => {
     return Promise.resolve()
       .then(command)
       .then((cmd) => {
-        expect(pgb.api.buildApp).toBeCalledWith('12', '')
+        expect(pgb.api.buildApp).toBeCalledWith('12', [''])
         expect(wait).toBeCalledWith({ id: 12 })
         expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12, 'wait': true } })
       })
@@ -43,7 +44,18 @@ describe('build', () => {
     return Promise.resolve()
       .then(command)
       .then((cmd) => {
-        expect(pgb.api.buildApp).toBeCalledWith('12', 'ios')
+        expect(pgb.api.buildApp).toBeCalledWith('12', ['ios'])
+        expect(wait).toBeCalledWith({ id: 12 })
+        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12, 'wait': true } })
+      })
+  })
+
+  test('should call buildApp with id and platforms', () => {
+    pgb.opts.commands.push('ios,windows', 'android')
+    return Promise.resolve()
+      .then(command)
+      .then((cmd) => {
+        expect(pgb.api.buildApp).toBeCalledWith('12', ['ios', 'winphone', 'android'])
         expect(wait).toBeCalledWith({ id: 12 })
         expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12, 'wait': true } })
       })

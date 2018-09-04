@@ -1,6 +1,6 @@
-Usage: pgb build [OPTIONS] id [platform]
+Usage: pgb build [OPTIONS] id [PLATFORMS...]
 
-Build an app for all platforms or for the optionally specified platform
+Build an app for all platforms or for the optionally specified platforms
 
 Options:
 
