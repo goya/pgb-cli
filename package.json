@@ -1,6 +1,6 @@
 {
   "name": "pgb-cli",
-  "version": "1.0.4-dev",
+  "version": "1.1.0",
   "description": "nodeJS CLI to PhoneGap Build",
   "keywords": [
     "PhoneGap",
@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "easy-utf8-table": "^0.2.0",
-    "pgb-api": "^1.0.5",
+    "pgb-api": "^1.1.1",
     "visualwidth": "^0.1.0"
   }
 }

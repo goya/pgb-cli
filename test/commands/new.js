@@ -37,7 +37,7 @@ describe('new', () => {
       .then(command)
       .then(() => {
         expect(pgb.print).toBeCalledWith('app 12 added')
-        expect(pgb.api.addApp).toBeCalledWith('org/repo', { 'hydrates': true, 'keys': {} })
+        expect(pgb.api.addApp).toBeCalledWith('org/repo', { 'hydrates': true, 'keys': {}, ignore: [] })
         expect(BindTransfer).toBeCalled()
       })
   })

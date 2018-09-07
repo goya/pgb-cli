@@ -5,7 +5,11 @@ Add a new app from the specified repository, directory or file
 Properties: 
 
   phonegap, android-phonegap, ios-phonegap, winphone-phonegap, hydrates, share, 
-  tag, debug, private, android-key, windows-key, ios-key, winphone-key
+  tag, debug, private, android-key, windows-key, ios-key, winphone-key, ignore
+
+  The ignore flag allows you to specify directories or files that should NOT
+  be uploaded. It supports the glob format (https://git-scm.com/docs/gitignore)
+  and can be specified multiple times.
 
 Options:
 

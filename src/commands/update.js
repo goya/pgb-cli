@@ -10,8 +10,9 @@ module.exports = () => {
   let id = has.id(pgb.opts.commands[1])
 
   let progress = BindProgress()
+  let repoOrFile = pgb.opts.commands[2]
 
-  return pgb.api.updateApp(id, pgb.opts.commands[2], appHelper.getData())
+  return pgb.api.updateApp(id, repoOrFile, appHelper.getData(repoOrFile))
     .then((app) => {
       pgb.print(`app ${pgb.colours.bold(app.id)} updated`)
       return wait(app).then((app) =>
