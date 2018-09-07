@@ -12,7 +12,7 @@ describe('args', () => {
   })
 
   test('should return an object', () => {
-    let opts = { flags: {}, aliases: {} }
+    let opts = { flags: {}, aliases: {}, variables: {} }
     process.argv = [ '', '' ]
     return parseArgs(opts).then((result) => {
       expect(result).toEqual({ commands: [ ], variables: {} })
@@ -20,7 +20,7 @@ describe('args', () => {
   })
 
   test('should parse single commands', () => {
-    let opts = { flags: {}, aliases: {} }
+    let opts = { flags: {}, aliases: {}, variables: {} }
     argv('foo')
     return parseArgs(opts).then((result) => {
       expect(result).toEqual({ commands: [ 'foo' ], variables: {} })
@@ -28,7 +28,7 @@ describe('args', () => {
   })
 
   test('should parse multiple commands', () => {
-    let opts = { flags: {}, aliases: {} }
+    let opts = { flags: {}, aliases: {}, variables: {} }
     argv('foo bar')
     return parseArgs(opts).then((result) => {
       expect(result).toEqual({ commands: [ 'foo', 'bar' ], variables: {} })
@@ -36,7 +36,7 @@ describe('args', () => {
   })
 
   test('should parse flags', () => {
-    let opts = { flags: { foo: 'b' }, aliases: {} }
+    let opts = { flags: { foo: 'b' }, aliases: {}, variables: {} }
     argv('foo -b')
     return parseArgs(opts).then((result) => {
       expect(result).toEqual({ commands: [ 'foo' ], foo: true, variables: {} })
@@ -44,7 +44,7 @@ describe('args', () => {
   })
 
   test('should parse flags with multiple aliases', () => {
-    let opts = { flags: { foo: 'br' }, aliases: {} }
+    let opts = { flags: { foo: 'br' }, aliases: {}, variables: {} }
     argv('foo -r')
     return parseArgs(opts).then((result) => {
       expect(result).toEqual({ commands: [ 'foo' ], foo: true, variables: {} })
@@ -52,7 +52,7 @@ describe('args', () => {
   })
 
   test('should parse compound flags', () => {
-    let opts = { flags: { bar: 'x', roo: 'r' }, aliases: {} }
+    let opts = { flags: { bar: 'x', roo: 'r' }, aliases: {}, variables: {} }
     argv('foo -xr')
     return parseArgs(opts).then((result) => {
       expect(result).toEqual({ commands: [ 'foo' ], bar: true, roo: true, variables: {} })
@@ -60,7 +60,7 @@ describe('args', () => {
   })
 
   test('should parse full flags', () => {
-    let opts = { flags: { bar: 'x', roo: 'y', oot: 'z' }, aliases: {} }
+    let opts = { flags: { bar: 'x', roo: 'y', oot: 'z' }, aliases: {}, variables: {} }
     argv('foo --bar --roo')
     return parseArgs(opts).then((result) => {
       expect(result).toEqual({ commands: [ 'foo' ], bar: true, roo: true, variables: {} })
@@ -68,7 +68,7 @@ describe('args', () => {
   })
 
   test('should parse variables', () => {
-    let opts = { flags: { }, aliases: {} }
+    let opts = { flags: {}, aliases: {}, variables: {} }
     argv('foo var1=abc var2=def')
     return parseArgs(opts).then((result) => {
       expect(result).toEqual({ commands: [ 'foo' ], variables: { var1: 'abc', var2: 'def' } })
@@ -76,15 +76,39 @@ describe('args', () => {
   })
 
   test('should parse variables correctly with equal signs in value', () => {
-    let opts = { flags: { }, aliases: {} }
+    let opts = { flags: { }, aliases: {}, variables: { var1: false } }
     argv('foo var1=abc var2=bar=12')
     return parseArgs(opts).then((result) => {
       expect(result).toEqual({ commands: [ 'foo' ], variables: { var1: 'abc', var2: 'bar=12' } })
     })
   })
 
+  test('should parse variables correctly with --', () => {
+    let opts = { flags: { }, aliases: {}, variables: { var2: false } }
+    argv('foo var1=abc --var2 bar=12')
+    return parseArgs(opts).then((result) => {
+      expect(result).toEqual({ commands: [ 'foo' ], variables: { var1: 'abc', var2: 'bar=12' } })
+    })
+  })
+
+  test('should parse variables correctly with -- and equal signs', () => {
+    let opts = { flags: { }, aliases: {}, variables: { var2: false } }
+    argv('foo var1=abc --var2=bar=12 --var3=12')
+    return parseArgs(opts).then((result) => {
+      expect(result).toEqual({ commands: [ 'foo' ], variables: { var1: 'abc', var2: 'bar=12', 'var3': '12' } })
+    })
+  })
+
+  test('should parse variables and use arrays for duplicate variables', () => {
+    let opts = { flags: { }, aliases: {}, variables: { var2: true, var4: true } }
+    argv('foo var1=abc --var2=bar=12 --var3=12 --var2=bar=24 --var3=24 --var4=1,2,3')
+    return parseArgs(opts).then((result) => {
+      expect(result).toEqual({ commands: [ 'foo' ], variables: { var1: 'abc', var2: ['bar=12', 'bar=24'], 'var3': '24', 'var4': ['1', '2', '3'] } })
+    })
+  })
+
   test('should include env variables with pgb_ prefix', () => {
-    let opts = { flags: { }, aliases: {} }
+    let opts = { flags: { }, aliases: {}, variables: {} }
     argv('foo')
     process.env['pgb_var1'] = 'abc'
     return parseArgs(opts).then((result) => {
@@ -93,7 +117,7 @@ describe('args', () => {
   })
 
   test('should obey precedence, variables > envs', () => {
-    let opts = { flags: { }, aliases: {} }
+    let opts = { flags: { }, aliases: {}, variables: {} }
     argv('foo var1=bar')
     process.env['pgb_var1'] = 'foo'
     return parseArgs(opts).then((result) => {
@@ -109,7 +133,7 @@ describe('args', () => {
     afterAll(() => stdin.restore())
 
     test('should parse piped data', (done) => {
-      let opts = { flags: { }, aliases: {} }
+      let opts = { flags: { }, aliases: {}, variables: {} }
       argv('foo')
       parseArgs(opts).then((result) => {
         expect(result).toEqual({ commands: [ 'foo' ], variables: { foo: 'bar' } })
@@ -121,7 +145,7 @@ describe('args', () => {
     })
 
     test('should allow empty input', (done) => {
-      let opts = { flags: { }, aliases: {} }
+      let opts = { flags: { }, aliases: {}, variables: {} }
       argv('foo')
       parseArgs(opts).then((result) => {
         expect(result).toEqual({ commands: [ 'foo' ], variables: { } })
@@ -133,7 +157,7 @@ describe('args', () => {
     })
 
     test('should fail on bad json', (done) => {
-      let opts = { flags: { }, aliases: {} }
+      let opts = { flags: { }, aliases: {}, variables: {} }
       argv('foo')
       parseArgs(opts).then((result) => {
         done.fail('pipe successful')
@@ -147,7 +171,7 @@ describe('args', () => {
     })
 
     test('should obey precedence, variables > pipe > envs', (done) => {
-      let opts = { flags: { }, aliases: {} }
+      let opts = { flags: { }, aliases: {}, variables: {} }
       process.env['pgb_var1'] = 'foo'
       parseArgs(opts).then((result) => {
         expect(result).toEqual({ commands: [ 'foo' ], variables: { var1: 'yut' } })

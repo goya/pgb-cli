@@ -24,6 +24,13 @@ describe('merge', () => {
     expect(misc.merge({ a: 1 }, { a: 2 }, { a: 3 })).toEqual({ a: 3 })
   })
 
+  test('concats arrays', () => {
+    expect(misc.merge({ a: [] }, {})).toEqual({ a: [] })
+    expect(misc.merge({ a: [2] }, { a: [1] })).toEqual({ a: [1, 2] })
+    expect(misc.merge({ a: [] }, { a: 56 })).toEqual({ a: 56 })
+    expect(misc.merge({ a: 56 }, { a: [] })).toEqual({ a: [] })
+  })
+
   test('does nested merging', () => {
     expect(misc.merge({ a: { c: [], b: 1 } }, { a: { b: 2 } }, { a: { c: 3 } })).toEqual({ a: { b: 2, c: 3 } })
   })

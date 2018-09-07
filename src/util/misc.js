@@ -18,7 +18,10 @@ const promiseSeries = (...funcs) =>
 const merge = function() {
   const clone = (source, dest) => {
     for (let prop in source) {
-      if (source[prop] && source[prop].constructor === Object) {
+      if (source[prop] && source[prop].constructor === Array && (dest[prop] == null || dest[prop].constructor === Array)) {
+        dest[prop] = dest[prop] || []
+        dest[prop] = source[prop].concat(dest[prop])
+      } else if (source[prop] && source[prop].constructor === Object) {
         dest[prop] = dest[prop] || {}
         dest[prop] = clone(source[prop], dest[prop])
       } else {

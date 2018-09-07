@@ -18,7 +18,48 @@ class PGB {
     this.session = session
     this.cliOpts = {
       flags: {
-        version: 'v', bare: 'b', ascii: 'a', json: 'j', debug: 'd', noprogress: '', help: '?h', force: 'fy', completion: '', stdout: 's', nocolours: 'c', nounlock: '', exit: 'e', exitcode: ''
+        version: 'v',
+        bare: 'b',
+        ascii: 'a',
+        json: 'j',
+        debug: 'd',
+        noprogress: '',
+        help: '?h',
+        force: 'fy',
+        completion: '',
+        stdout: 's',
+        nocolours: 'c',
+        nounlock: '',
+        exit: 'e',
+        exitcode: ''
+      },
+      variables: {
+        ignore: true,
+        keystore_password: false,
+        key_password: false,
+        auth_token: false,
+        publisher_id: false,
+        title: false,
+        profile: false,
+        key: false,
+        default: false,
+        lock: false,
+        alias: false,
+        hydrates: false,
+        share: false,
+        tag: false,
+        debug: false,
+        private: false,
+        pull: false,
+        zip: false,
+        'android-phonegap': false,
+        'winphone-phonegap': false,
+        'ios-phonegap': false,
+        phonegap: false,
+        'android-key': false,
+        'windows-key': false,
+        'ios-key': false,
+        'winphone-key': false
       },
       aliases: {
         add: 'new',
@@ -82,6 +123,7 @@ class PGB {
     process.on('debug', pgb.debug.bind(this))
 
     command = this.opts.commands[0] || 'usage'
+    command = command.toLowerCase()
 
     if (this.opts.completion) command = 'completion'
     else if (this.opts.version) command = 'version'

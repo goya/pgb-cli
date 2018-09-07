@@ -18,17 +18,27 @@ module.exports = (opts) => {
       }
     }
 
-    const parseVariable = arg => {
-      let args = arg.split('=')
-      variables[args.shift().toLowerCase()] = args.join('=')
-    }
-
     let rawArgs = process.argv.slice(2)
-    for (let arg of rawArgs) {
-      if (arg.startsWith('--')) parseArgs([arg.replace(/-/g, '')])
-      else if (arg.startsWith('-')) parseArgs(arg.slice(1))
-      else if (arg.indexOf('=') > -1) parseVariable(arg)
-      else result.commands.push(arg.toLowerCase())
+    for (let i = 0; i < rawArgs.length; i++) {
+      let arg = rawArgs[i]
+      let args = arg.split('=')
+      let key = args.shift().toLowerCase().replace(/^--/, '')
+      let variable = (key in opts.variables) || args.length
+
+      if (variable) {
+        let value = (args.length) ? args.join('=') : rawArgs[++i]
+        if (opts.variables[key]) {
+          variables[key] = (variables[key] || []).concat(value.split(','))
+        } else {
+          variables[key] = value
+        }
+      } else if (arg.startsWith('--')) {
+        parseArgs([arg.slice(2)])
+      } else if (arg.startsWith('-')) {
+        parseArgs(arg.slice(1))
+      } else {
+        result.commands.push(arg)
+      }
     }
 
     if (result.commands[0]) {
