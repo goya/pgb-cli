@@ -19,10 +19,18 @@ or
 
 If you don't have (or don't want) node installed you can download executables for Mac OSX, Linux and Windows [here](https://github.com/phonegap-build/pgb-cli/releases/latest)
 
-Here is a snippet to print out your apps to the console:
+Here is a snippet of some common actions:
 
 ```bash
+
+# list your apps
 > pgb ls
+
+# create a new app from a github repo
+> pgb new shazamable/repoodly
+
+# create a new app from a directory
+> pgb new . --ios-key 12 --share true --debug true --ignore node_modules,tmp,test,**/*.log
 ```
 
 Here is the full list of commands:
