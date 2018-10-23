@@ -67,11 +67,27 @@ describe('args', () => {
     })
   })
 
+  test('should parse variables only with --blah or blah=blah', () => {
+    let opts = { flags: {}, aliases: {}, variables: { lock: false, foo: false } }
+    argv('foo lock 12 --lock b yut=9 foo bar')
+    return parseArgs(opts).then((result) => {
+      expect(result).toEqual({ commands: ['foo', 'lock', '12', 'foo', 'bar'], variables: { lock: 'b', yut: '9' } })
+    })
+  })
+
   test('should parse variables', () => {
     let opts = { flags: {}, aliases: {}, variables: {} }
     argv('foo var1=abc var2=def')
     return parseArgs(opts).then((result) => {
       expect(result).toEqual({ commands: [ 'foo' ], variables: { var1: 'abc', var2: 'def' } })
+    })
+  })
+
+  test('should parse variables with dashes in name', () => {
+    let opts = { flags: { 'exitcode': '' }, aliases: {}, variables: { } }
+    argv('foo --exit-code')
+    return parseArgs(opts).then((result) => {
+      expect(result).toEqual({ commands: [ 'foo' ], exitcode: true, variables: { } })
     })
   })
 

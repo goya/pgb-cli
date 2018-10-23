@@ -23,7 +23,7 @@ module.exports = (opts) => {
       let arg = rawArgs[i]
       let args = arg.split('=')
       let key = args.shift().toLowerCase().replace(/^--/, '')
-      let variable = (key in opts.variables) || args.length
+      let variable = args.length || (arg.startsWith('--') && (key in opts.variables))
 
       if (variable) {
         let value = (args.length) ? args.join('=') : rawArgs[++i]
@@ -33,7 +33,7 @@ module.exports = (opts) => {
           variables[key] = value
         }
       } else if (arg.startsWith('--')) {
-        parseArgs([arg.slice(2)])
+        parseArgs([arg.replace(/-/g, '')])
       } else if (arg.startsWith('-')) {
         parseArgs(arg.slice(1))
       } else {
