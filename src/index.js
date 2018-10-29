@@ -5,6 +5,7 @@ const colours = require('./util/colours')
 const version = require('../package.json').version
 const api = require('pgb-api')({
   events: process,
+  baseUrl: process.env['PGB_API_URL'],
   headers: {
     'User-Agent': `pgb-cli/${version} node/${process.version} (${process.platform})`
   }

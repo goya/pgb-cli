@@ -19,4 +19,4 @@ cd .. && tar --append --file=releases/pgb.linux.tar completions/* && gzip releas
 
 cd releases
 
-openssl sha -sha256 < pgb.macos.tar.gz > pgb.macos.tar.gz.sha
+openssl dgst -sha256 < pgb.macos.tar.gz > pgb.macos.tar.gz.sha

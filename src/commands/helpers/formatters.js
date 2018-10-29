@@ -1,5 +1,5 @@
-const colours = require('../../util/colours')
 const vw = require('visualwidth')
+const colours = require('../../util/colours')
 
 module.exports.os = os => {
   switch (os) {
