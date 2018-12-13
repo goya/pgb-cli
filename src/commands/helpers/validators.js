@@ -1,10 +1,9 @@
 const key_platforms = { valid: ['ios', 'android', 'winphone', 'windows'], alias: { wp8: 'winphone' } }
 const app_platforms = { valid: ['ios', 'android', 'winphone'], alias: { windows: 'winphone', wp8: 'winphone' } }
-const colours = require('../../util/colours')
 
 module.exports.args = (num) => {
   if (pgb.opts.commands.length - 1 < num) {
-    pgb.print(colours.error(`command requires ${num} argument(s)`))
+    pgb.error(`command requires ${num} argument(s)`)
     pgb.opts.short_usage = true
     require('../usage')()
     throw new Error()

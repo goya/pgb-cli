@@ -47,7 +47,7 @@ describe('validators', () => {
     jest.mock('../../../src/commands/usage')
     expect(pgb.opts.short_usage).toBeFalsy()
     expect(() => validators.args(1)).toThrow('')
-    expect(pgb.print).lastCalledWith('command requires 1 argument(s)')
+    expect(pgb.error).lastCalledWith('command requires 1 argument(s)')
     expect(pgb.opts.short_usage).toBeTruthy()
     pgb.opts = { commands: ['cmd', 'arg1'] }
     expect(() => validators.args(1)).not.toThrow()
