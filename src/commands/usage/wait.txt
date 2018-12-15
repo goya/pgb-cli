@@ -2,8 +2,6 @@ Usage: pgb wait [OPTIONS] id
 
 Waits for a build for the specified app
 
-Variables:
-
 Options:
 
   --exit-code    Fail command if build fails
