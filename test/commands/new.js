@@ -28,7 +28,7 @@ describe('new', () => {
       .then(command)
       .then(() => {
         expect(validators.args).toHaveBeenLastCalledWith(1)
-        expect(validators.signed_in).toBeCalled()
+        expect(validators.signed_in).toHaveBeenCalled()
       })
   })
 
@@ -36,9 +36,9 @@ describe('new', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith('app 12 added')
-        expect(pgb.api.addApp).toBeCalledWith('org/repo', { 'hydrates': true, 'keys': {}, ignore: [] })
-        expect(BindTransfer).toBeCalled()
+        expect(pgb.print).toHaveBeenCalledWith('app 12 added')
+        expect(pgb.api.addApp).toHaveBeenCalledWith('org/repo', { 'hydrates': true, 'keys': {}, ignore: [] })
+        expect(BindTransfer).toHaveBeenCalled()
       })
   })
 
@@ -47,7 +47,7 @@ describe('new', () => {
     return Promise.resolve()
       .then(command)
       .catch((err) => {
-        expect(stop).toBeCalled()
+        expect(stop).toHaveBeenCalled()
         expect(err).toMatchObject(new Error('an error'))
       })
   })

@@ -25,7 +25,7 @@ describe('new', () => {
         .then(command)
         .then(() => {
           expect(validators.args).toHaveBeenLastCalledWith(1)
-          expect(validators.signed_in).toBeCalled()
+          expect(validators.signed_in).toHaveBeenCalled()
           expect(validators.variables).toHaveBeenLastCalledWith('title', 'key', 'profile')
         })
     })
@@ -37,7 +37,7 @@ describe('new', () => {
         .then(command)
         .then(() => {
           expect(validators.args).toHaveBeenLastCalledWith(1)
-          expect(validators.signed_in).toBeCalled()
+          expect(validators.signed_in).toHaveBeenCalled()
           expect(validators.variables).toHaveBeenLastCalledWith('title', 'alias', 'key')
         })
     })
@@ -49,7 +49,7 @@ describe('new', () => {
         .then(command)
         .then(() => {
           expect(validators.args).toHaveBeenLastCalledWith(1)
-          expect(validators.signed_in).toBeCalled()
+          expect(validators.signed_in).toHaveBeenCalled()
           expect(validators.variables).toHaveBeenLastCalledWith('title', 'key')
         })
     })
@@ -61,7 +61,7 @@ describe('new', () => {
         .then(command)
         .then(() => {
           expect(validators.args).toHaveBeenLastCalledWith(1)
-          expect(validators.signed_in).toBeCalled()
+          expect(validators.signed_in).toHaveBeenCalled()
           expect(validators.variables).toHaveBeenLastCalledWith('title', 'publisher_id')
         })
     })
@@ -83,7 +83,7 @@ describe('new', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12 }, 'pretty': 'ios key 12 added' })
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': 12, 'json': { 'id': 12 }, 'pretty': 'ios key 12 added' })
         let call = pgb.api.addKey.mock.calls[0]
         expect(call[0]).toBe('ios')
         expect(call[1]).toMatchObject({ cert: { path: '/foo' }, profile: { path: '/bar' }, data: { title: 'a title' } })
@@ -102,6 +102,6 @@ describe('new', () => {
   test('should support completion', () =>
     Promise.resolve()
       .then(command.completion)
-      .then(() => expect(complete.platform).toBeCalledWith(true))
+      .then(() => expect(complete.platform).toHaveBeenCalledWith(true))
   )
 })

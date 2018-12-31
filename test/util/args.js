@@ -115,6 +115,22 @@ describe('args', () => {
     })
   })
 
+  test('should handle a dangling multiple variable without error', () => {
+    let opts = { flags: { }, aliases: {}, variables: { var1: true } }
+    argv('foo --var1')
+    return parseArgs(opts).then((result) => {
+      expect(result).toEqual({ commands: [ 'foo' ], variables: { var1: [''] } })
+    })
+  })
+
+  test('should handle a dangling variable without error', () => {
+    let opts = { flags: { }, aliases: {}, variables: { var1: false } }
+    argv('foo --var1')
+    return parseArgs(opts).then((result) => {
+      expect(result).toEqual({ commands: [ 'foo' ], variables: { var1: undefined } })
+    })
+  })
+
   test('should parse variables and use arrays for duplicate variables', () => {
     let opts = { flags: { }, aliases: {}, variables: { var2: true, var4: true } }
     argv('foo var1=abc --var2=bar=12 --var3=12 --var2=bar=24 --var3=24 --var4=1,2,3')

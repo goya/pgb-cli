@@ -24,7 +24,7 @@ describe('wait', () => {
       .then(command)
       .then(() => {
         expect(validators.args).toHaveBeenLastCalledWith(1)
-        expect(validators.signed_in).toBeCalled()
+        expect(validators.signed_in).toHaveBeenCalled()
       })
   })
 
@@ -32,7 +32,7 @@ describe('wait', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(wait).toBeCalledWith({ id: 12 })
+        expect(wait).toHaveBeenCalledWith({ id: 12 })
       })
   })
 
@@ -48,6 +48,6 @@ describe('wait', () => {
   test('should support completion', () =>
     Promise.resolve()
       .then(command.completion)
-      .then(() => expect(complete.app).toBeCalled())
+      .then(() => expect(complete.app).toHaveBeenCalled())
   )
 })

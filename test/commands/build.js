@@ -22,7 +22,7 @@ describe('build', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(validators.signed_in).toBeCalled()
+        expect(validators.signed_in).toHaveBeenCalled()
         expect(validators.args).toHaveBeenLastCalledWith(1)
         expect(validators.platform).toHaveBeenCalledTimes(2)
         expect(validators.id).toHaveBeenLastCalledWith('12')
@@ -33,9 +33,9 @@ describe('build', () => {
     return Promise.resolve()
       .then(command)
       .then((cmd) => {
-        expect(pgb.api.buildApp).toBeCalledWith('12', [''])
-        expect(wait).toBeCalledWith({ id: 12 })
-        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12, 'wait': true } })
+        expect(pgb.api.buildApp).toHaveBeenCalledWith('12', [''])
+        expect(wait).toHaveBeenCalledWith({ id: 12 })
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': 12, 'json': { 'id': 12, 'wait': true } })
       })
   })
 
@@ -44,9 +44,9 @@ describe('build', () => {
     return Promise.resolve()
       .then(command)
       .then((cmd) => {
-        expect(pgb.api.buildApp).toBeCalledWith('12', ['ios'])
-        expect(wait).toBeCalledWith({ id: 12 })
-        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12, 'wait': true } })
+        expect(pgb.api.buildApp).toHaveBeenCalledWith('12', ['ios'])
+        expect(wait).toHaveBeenCalledWith({ id: 12 })
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': 12, 'json': { 'id': 12, 'wait': true } })
       })
   })
 
@@ -55,9 +55,9 @@ describe('build', () => {
     return Promise.resolve()
       .then(command)
       .then((cmd) => {
-        expect(pgb.api.buildApp).toBeCalledWith('12', ['ios', 'winphone', 'android'])
-        expect(wait).toBeCalledWith({ id: 12 })
-        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12, 'wait': true } })
+        expect(pgb.api.buildApp).toHaveBeenCalledWith('12', ['ios', 'winphone', 'android'])
+        expect(wait).toHaveBeenCalledWith({ id: 12 })
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': 12, 'json': { 'id': 12, 'wait': true } })
       })
   })
 
@@ -75,6 +75,6 @@ describe('build', () => {
   test('should support completion', () =>
     Promise.resolve()
       .then(command.completion)
-      .then(() => expect(complete.appAndPlatform).toBeCalled())
+      .then(() => expect(complete.appAndPlatform).toHaveBeenCalled())
   )
 })

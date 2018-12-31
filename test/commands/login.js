@@ -26,9 +26,9 @@ describe('login', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'email': 'user@example.com', 'id': 12 }, 'pretty': 'signed in as user@example.com' })
-        expect(pgb.api.me).toBeCalled()
-        expect(prompt).not.toBeCalled()
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': 12, 'json': { 'email': 'user@example.com', 'id': 12 }, 'pretty': 'signed in as user@example.com' })
+        expect(pgb.api.me).toHaveBeenCalled()
+        expect(prompt).not.toHaveBeenCalled()
       })
   })
 
@@ -39,8 +39,8 @@ describe('login', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'email': 'user@example.com', 'id': 12 }, 'pretty': 'signed in as user@example.com' })
-        expect(pgb.api.getToken).toBeCalledWith('user@example.com', 'password')
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': 12, 'json': { 'email': 'user@example.com', 'id': 12 }, 'pretty': 'signed in as user@example.com' })
+        expect(pgb.api.getToken).toHaveBeenCalledWith('user@example.com', 'password')
         expect(pgb.api.me).toHaveBeenCalledTimes(2)
         expect(prompt).toHaveBeenCalledTimes(2)
       })
@@ -54,8 +54,8 @@ describe('login', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'email': 'user@example.com', 'id': 12 }, 'pretty': 'signed in as user@example.com' })
-        expect(pgb.api.getToken).not.toBeCalled()
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': 12, 'json': { 'email': 'user@example.com', 'id': 12 }, 'pretty': 'signed in as user@example.com' })
+        expect(pgb.api.getToken).not.toHaveBeenCalled()
         expect(pgb.api.me).toHaveBeenCalledTimes(2)
         expect(prompt).toHaveBeenCalledTimes(1)
       })
@@ -69,8 +69,8 @@ describe('login', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'email': 'user@example.com', 'id': 12 }, 'pretty': 'signed in as user@example.com' })
-        expect(pgb.api.getToken).not.toBeCalled()
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': 12, 'json': { 'email': 'user@example.com', 'id': 12 }, 'pretty': 'signed in as user@example.com' })
+        expect(pgb.api.getToken).not.toHaveBeenCalled()
         expect(pgb.api.me).toHaveBeenCalledTimes(2)
         expect(prompt).not.toHaveBeenCalled()
       })
@@ -84,8 +84,8 @@ describe('login', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'email': 'user@example.com', 'id': 12 }, 'pretty': 'signed in as user@example.com' })
-        expect(pgb.api.getToken).not.toBeCalled()
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': 12, 'json': { 'email': 'user@example.com', 'id': 12 }, 'pretty': 'signed in as user@example.com' })
+        expect(pgb.api.getToken).not.toHaveBeenCalled()
         expect(pgb.api.me).toHaveBeenCalledTimes(2)
         expect(prompt).not.toHaveBeenCalled()
       })

@@ -23,8 +23,8 @@ describe('progress', () => {
     return wait({ id: 12, package: 'com.example', status: {}, error: {}, completed: true })
       .then((app) => {
         expect(app).toEqual({ id: 12, package: 'com.example', status: {}, error: {}, completed: true })
-        expect(pgb.api.getApp).not.toBeCalled()
-        expect(pgb.api.getStatus).not.toBeCalled()
+        expect(pgb.api.getApp).not.toHaveBeenCalled()
+        expect(pgb.api.getStatus).not.toHaveBeenCalled()
       })
   })
 
@@ -33,8 +33,8 @@ describe('progress', () => {
     return wait({ id: 12, package: 'com.example', status: {}, error: {}, completed: true })
       .then((app) => {
         expect(app).toEqual({ id: 12, package: 'com.example', status: {}, error: {}, completed: true })
-        expect(pgb.api.getApp).not.toBeCalled()
-        expect(pgb.api.getStatus).not.toBeCalled()
+        expect(pgb.api.getApp).not.toHaveBeenCalled()
+        expect(pgb.api.getStatus).not.toHaveBeenCalled()
       })
   })
 
@@ -44,8 +44,8 @@ describe('progress', () => {
       .then(done.fail)
       .catch((err) => {
         expect(err).toEqual(new Error())
-        expect(pgb.api.getApp).not.toBeCalled()
-        expect(pgb.api.getStatus).not.toBeCalled()
+        expect(pgb.api.getApp).not.toHaveBeenCalled()
+        expect(pgb.api.getStatus).not.toHaveBeenCalled()
         done()
       })
   })
@@ -55,8 +55,8 @@ describe('progress', () => {
     return wait({ id: 12, package: 'com.example', status: {}, error: { }, completed: true })
       .then((app) => {
         expect(app).toEqual({ id: 12, package: 'com.example', status: {}, error: { }, completed: true })
-        expect(pgb.api.getApp).not.toBeCalled()
-        expect(pgb.api.getStatus).not.toBeCalled()
+        expect(pgb.api.getApp).not.toHaveBeenCalled()
+        expect(pgb.api.getStatus).not.toHaveBeenCalled()
         expect(stdout.flush().stderr).toHaveLength(1)
       })
   })
@@ -66,8 +66,8 @@ describe('progress', () => {
     return wait({ id: 12, package: 'com.example', status: {}, error: { android: 'bad' }, completed: true })
       .then((app) => {
         expect(app).toEqual({ id: 12, package: 'com.example', status: {}, error: { android: 'bad' }, completed: true })
-        expect(pgb.api.getApp).not.toBeCalled()
-        expect(pgb.api.getStatus).not.toBeCalled()
+        expect(pgb.api.getApp).not.toHaveBeenCalled()
+        expect(pgb.api.getStatus).not.toHaveBeenCalled()
         expect(stdout.flush().stderr).toHaveLength(1)
       })
   })

@@ -19,7 +19,7 @@ describe('update', () => {
       .then(command)
       .then(() => {
         expect(validators.args).toHaveBeenLastCalledWith(2)
-        expect(validators.signed_in).toBeCalled()
+        expect(validators.signed_in).toHaveBeenCalled()
         expect(validators.id).toHaveBeenLastCalledWith('12')
         expect(validators.key_platform).toHaveBeenLastCalledWith('ios', true)
       })
@@ -30,8 +30,8 @@ describe('update', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12 }, 'pretty': 'ios key 12 updated' })
-        expect(pgb.api.updateKey).toBeCalledWith('ios', '12', { 'title': 'a title' })
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': 12, 'json': { 'id': 12 }, 'pretty': 'ios key 12 updated' })
+        expect(pgb.api.updateKey).toHaveBeenCalledWith('ios', '12', { 'title': 'a title' })
       })
   })
 
@@ -47,6 +47,6 @@ describe('update', () => {
   test('should support completion', () =>
     Promise.resolve()
       .then(command.completion)
-      .then(() => expect(complete.key).toBeCalledWith(true))
+      .then(() => expect(complete.key).toHaveBeenCalledWith(true))
   )
 })

@@ -22,7 +22,7 @@ describe('app', () => {
       .then(command)
       .then(() => {
         expect(validators.args).toHaveBeenLastCalledWith(1)
-        expect(validators.signed_in).toBeCalled()
+        expect(validators.signed_in).toHaveBeenCalled()
         expect(validators.id).toHaveBeenLastCalledWith('12')
       })
   })
@@ -31,7 +31,7 @@ describe('app', () => {
     return Promise.resolve()
       .then(command)
       .then((app) => {
-        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12 }, 'pretty': { 'id': 12 } })
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': 12, 'json': { 'id': 12 }, 'pretty': { 'id': 12 } })
       })
   })
 
@@ -49,6 +49,6 @@ describe('app', () => {
   test('should support completion', () =>
     Promise.resolve()
       .then(command.completion)
-      .then(() => expect(complete.app).toBeCalled())
+      .then(() => expect(complete.app).toHaveBeenCalled())
   )
 })

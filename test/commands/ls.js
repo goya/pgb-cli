@@ -23,7 +23,7 @@ describe('ls', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(validators.signed_in).toBeCalled()
+        expect(validators.signed_in).toHaveBeenCalled()
       })
   })
 

@@ -22,7 +22,7 @@ describe('rm', () => {
       .then(command)
       .then(() => {
         expect(validators.args).toHaveBeenLastCalledWith(2)
-        expect(validators.signed_in).toBeCalled()
+        expect(validators.signed_in).toHaveBeenCalled()
         expect(validators.id).toHaveBeenLastCalledWith('12')
         expect(validators.key_platform).toHaveBeenLastCalledWith('ios', true)
       })
@@ -33,8 +33,8 @@ describe('rm', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({ 'bare': '12', 'pretty': 'ios key 12 deleted' })
-        expect(pgb.api.deleteKey).toBeCalledWith('ios', '12')
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': '12', 'pretty': 'ios key 12 deleted' })
+        expect(pgb.api.deleteKey).toHaveBeenCalledWith('ios', '12')
         expect(prompt).not.toHaveBeenCalled()
       })
   })
@@ -43,8 +43,8 @@ describe('rm', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({ 'bare': '12', 'pretty': 'ios key 12 deleted' })
-        expect(pgb.api.deleteKey).toBeCalledWith('ios', '12')
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': '12', 'pretty': 'ios key 12 deleted' })
+        expect(pgb.api.deleteKey).toHaveBeenCalledWith('ios', '12')
         expect(prompt).toHaveBeenCalledWith('are you sure? [yN] ', { confirm: true })
       })
   })
@@ -55,8 +55,8 @@ describe('rm', () => {
       .then(command)
       .then(done.fail)
       .catch(() => {
-        expect(pgb.print).not.toBeCalled()
-        expect(pgb.api.deleteKey).not.toBeCalled()
+        expect(pgb.print).not.toHaveBeenCalled()
+        expect(pgb.api.deleteKey).not.toHaveBeenCalled()
         expect(prompt).toHaveBeenCalledWith('are you sure? [yN] ', { confirm: true })
         done()
       })
@@ -74,6 +74,6 @@ describe('rm', () => {
   test('should support completion', () =>
     Promise.resolve()
       .then(command.completion)
-      .then(() => expect(complete.key).toBeCalledWith(true))
+      .then(() => expect(complete.key).toHaveBeenCalledWith(true))
   )
 })

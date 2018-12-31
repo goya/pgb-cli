@@ -22,7 +22,7 @@ describe('unlock', () => {
       .then(command)
       .then(() => {
         expect(validators.args).toHaveBeenLastCalledWith(2)
-        expect(validators.signed_in).toBeCalled()
+        expect(validators.signed_in).toHaveBeenCalled()
         expect(validators.id).toHaveBeenLastCalledWith('12')
         expect(validators.key_platform).toHaveBeenLastCalledWith('ios', true)
       })
@@ -32,8 +32,8 @@ describe('unlock', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12 }, 'pretty': 'ios key 12 unlocked' })
-        expect(pgb.api.updateKey).toBeCalledWith('ios', '12', { data: { password: 'password' } })
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': 12, 'json': { 'id': 12 }, 'pretty': 'ios key 12 unlocked' })
+        expect(pgb.api.updateKey).toHaveBeenCalledWith('ios', '12', { data: { password: 'password' } })
         expect(prompt).toHaveBeenCalledWith('Key Password: ', { 'mask': true })
       })
   })
@@ -61,6 +61,6 @@ describe('unlock', () => {
   test('should support completion', () =>
     Promise.resolve()
       .then(command.completion)
-      .then(() => expect(complete.key).toBeCalledWith())
+      .then(() => expect(complete.key).toHaveBeenCalledWith())
   )
 })

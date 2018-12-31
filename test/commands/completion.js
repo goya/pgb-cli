@@ -65,7 +65,7 @@ describe('build', () => {
       .then(command)
       .then(() => {
         expect(console.log).not.toHaveBeenCalledWith('')
-        expect(pgb.debug).toBeCalledWith(new Error('an error'))
+        expect(pgb.debug).toHaveBeenCalledWith(new Error('an error'))
       })
   })
 

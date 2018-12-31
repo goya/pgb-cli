@@ -28,7 +28,7 @@ module.exports = (opts) => {
       if (variable) {
         let value = (args.length) ? args.join('=') : rawArgs[++i]
         if (opts.variables[key]) {
-          variables[key] = (variables[key] || []).concat(value.split(','))
+          variables[key] = (variables[key] || []).concat((value || '').split(','))
         } else {
           variables[key] = value
         }

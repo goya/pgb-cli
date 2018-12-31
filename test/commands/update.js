@@ -28,7 +28,7 @@ describe('update', () => {
       .then(command)
       .then(() => {
         expect(validators.args).toHaveBeenLastCalledWith(1)
-        expect(validators.signed_in).toBeCalled()
+        expect(validators.signed_in).toHaveBeenCalled()
         expect(validators.id).toHaveBeenLastCalledWith('12')
       })
   })
@@ -38,9 +38,9 @@ describe('update', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith('app 12 updated')
-        expect(pgb.api.updateApp).toBeCalledWith('12', 'org/repo', { 'hydrates': true, 'keys': {}, ignore: [] })
-        expect(BindTransfer).toBeCalled()
+        expect(pgb.print).toHaveBeenCalledWith('app 12 updated')
+        expect(pgb.api.updateApp).toHaveBeenCalledWith('12', 'org/repo', { 'hydrates': true, 'keys': {}, ignore: [] })
+        expect(BindTransfer).toHaveBeenCalled()
       })
   })
 
@@ -49,7 +49,7 @@ describe('update', () => {
     return Promise.resolve()
       .then(command)
       .catch((err) => {
-        expect(stop).toBeCalled()
+        expect(stop).toHaveBeenCalled()
         expect(err).toMatchObject(new Error('an error'))
       })
   })
@@ -57,6 +57,6 @@ describe('update', () => {
   test('should support completion', () =>
     Promise.resolve()
       .then(command.completion)
-      .then(() => expect(complete.app).toBeCalled())
+      .then(() => expect(complete.app).toHaveBeenCalled())
   )
 })

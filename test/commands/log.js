@@ -18,7 +18,7 @@ describe('log', () => {
       .then(command)
       .then(() => {
         expect(validators.args).toHaveBeenLastCalledWith(2)
-        expect(validators.signed_in).toBeCalled()
+        expect(validators.signed_in).toHaveBeenCalled()
         expect(validators.platform).toHaveBeenLastCalledWith('ios', true)
         expect(validators.id).toHaveBeenLastCalledWith('12')
       })
@@ -28,8 +28,8 @@ describe('log', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith('full log', { id: 12, log: 'full log' })
-        expect(pgb.api.getAppLog).toBeCalledWith('12', 'ios')
+        expect(pgb.print).toHaveBeenCalledWith('full log', { id: 12, log: 'full log' })
+        expect(pgb.api.getAppLog).toHaveBeenCalledWith('12', 'ios')
       })
   })
 
@@ -45,6 +45,6 @@ describe('log', () => {
   test('should support completion', () =>
     Promise.resolve()
       .then(command.completion)
-      .then(() => expect(complete.appAndPlatform).toBeCalled())
+      .then(() => expect(complete.appAndPlatform).toHaveBeenCalled())
   )
 })

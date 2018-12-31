@@ -21,7 +21,7 @@ describe('download', () => {
       .then(command)
       .then(() => {
         expect(validators.args).toHaveBeenLastCalledWith(2)
-        expect(validators.signed_in).toBeCalled()
+        expect(validators.signed_in).toHaveBeenCalled()
         expect(validators.platform).toHaveBeenLastCalledWith('ios', true)
       })
   })
@@ -30,7 +30,7 @@ describe('download', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.api.downloadApp).toBeCalledWith('12', 'ios', '.')
+        expect(pgb.api.downloadApp).toHaveBeenCalledWith('12', 'ios', '.')
       })
   })
 
@@ -39,7 +39,7 @@ describe('download', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.api.downloadApp).toBeCalledWith('12', 'ios', '/foo')
+        expect(pgb.api.downloadApp).toHaveBeenCalledWith('12', 'ios', '/foo')
       })
   })
 
@@ -53,14 +53,14 @@ describe('download', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).not.toBeCalled()
+        expect(pgb.print).not.toHaveBeenCalled()
         let call = pgb.api.downloadApp.mock.calls[0]
         expect(call[0]).toBe('12')
         expect(call[1]).toBe('ios')
         expect(call[2]).toBeInstanceOf(require('stream').Writable)
         expect(call[2]).toMatchObject({ _isStdio: true })
-        expect(Progress).not.toBeCalledWith('downloading ', 100, 60)
-        expect(pgb.print).not.toBeCalled()
+        expect(Progress).not.toHaveBeenCalledWith('downloading ', 100, 60)
+        expect(pgb.print).not.toHaveBeenCalled()
       })
   })
 
@@ -74,10 +74,10 @@ describe('download', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(Progress.mock.instances[0].update).toBeCalledWith(100, '100 B / 100 B')
-        expect(Progress.mock.instances[0].stop).toBeCalledWith()
-        expect(pgb.api.downloadApp).toBeCalledWith('12', 'ios', '.')
-        expect(Progress).toBeCalledWith('downloading ', 100, 40)
+        expect(Progress.mock.instances[0].update).toHaveBeenCalledWith(100, '100 B / 100 B')
+        expect(Progress.mock.instances[0].stop).toHaveBeenCalledWith()
+        expect(pgb.api.downloadApp).toHaveBeenCalledWith('12', 'ios', '.')
+        expect(Progress).toHaveBeenCalledWith('downloading ', 100, 40)
       })
   })
 
@@ -90,7 +90,7 @@ describe('download', () => {
       .then(command)
       .then(done.fail)
       .catch(() => {
-        expect(Progress).not.toBeCalledWith()
+        expect(Progress).not.toHaveBeenCalledWith()
         done()
       })
   })
@@ -107,6 +107,6 @@ describe('download', () => {
   test('should support completion', () =>
     Promise.resolve()
       .then(command.completion)
-      .then(() => expect(complete.appAndPlatform).toBeCalled())
+      .then(() => expect(complete.appAndPlatform).toHaveBeenCalled())
   )
 })

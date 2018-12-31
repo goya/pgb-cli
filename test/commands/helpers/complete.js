@@ -15,7 +15,7 @@ describe('complete', () => {
         .then(complete.app)
         .then((result) => {
           expect(result).toEqual([12, 13])
-          expect(pgb.api.getApps).toBeCalledWith()
+          expect(pgb.api.getApps).toHaveBeenCalledWith()
         })
     })
 
@@ -36,7 +36,7 @@ describe('complete', () => {
         .then(complete.appAndPlatform)
         .then((result) => {
           expect(result).toEqual([12, 13])
-          expect(pgb.api.getApps).toBeCalledWith()
+          expect(pgb.api.getApps).toHaveBeenCalledWith()
         })
     })
 
@@ -67,7 +67,7 @@ describe('complete', () => {
         .then(complete.key)
         .then((result) => {
           expect(result).toEqual([12, 13])
-          expect(pgb.api.getKeys).toBeCalledWith('ios')
+          expect(pgb.api.getKeys).toHaveBeenCalledWith('ios')
         })
     })
 

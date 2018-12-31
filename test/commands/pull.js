@@ -41,6 +41,6 @@ describe('pull', () => {
   test('should support completion', () =>
     Promise.resolve()
       .then(command.completion)
-      .then(() => expect(complete.app).toBeCalled())
+      .then(() => expect(complete.app).toHaveBeenCalled())
   )
 })

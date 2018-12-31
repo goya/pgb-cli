@@ -30,7 +30,7 @@ describe('keys', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(validators.signed_in).toBeCalled()
+        expect(validators.signed_in).toHaveBeenCalled()
         expect(validators.key_platform).toHaveBeenLastCalledWith(undefined, false)
       })
   })
@@ -83,6 +83,6 @@ describe('keys', () => {
   test('should support completion', () =>
     Promise.resolve()
       .then(command.completion)
-      .then(() => expect(complete.platform).toBeCalledWith(true))
+      .then(() => expect(complete.platform).toHaveBeenCalledWith(true))
   )
 })

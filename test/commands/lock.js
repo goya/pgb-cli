@@ -18,7 +18,7 @@ describe('key', () => {
       .then(command)
       .then(() => {
         expect(validators.args).toHaveBeenLastCalledWith(2)
-        expect(validators.signed_in).toBeCalled()
+        expect(validators.signed_in).toHaveBeenCalled()
         expect(validators.key_platform).toHaveBeenLastCalledWith('ios', true)
         expect(validators.id).toHaveBeenLastCalledWith('12')
       })
@@ -28,8 +28,8 @@ describe('key', () => {
     return Promise.resolve()
       .then(command)
       .then((key) => {
-        expect(pgb.print).toBeCalledWith({ 'bare': 12, 'json': { 'id': 12 }, 'pretty': 'ios key 12 locked' })
-        expect(pgb.api.lockKey).toBeCalledWith('ios', '12')
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': 12, 'json': { 'id': 12 }, 'pretty': 'ios key 12 locked' })
+        expect(pgb.api.lockKey).toHaveBeenCalledWith('ios', '12')
       })
   })
 
@@ -47,6 +47,6 @@ describe('key', () => {
   test('should support completion', () =>
     Promise.resolve()
       .then(command.completion)
-      .then(() => expect(complete.key).toBeCalledWith())
+      .then(() => expect(complete.key).toHaveBeenCalledWith())
   )
 })

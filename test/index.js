@@ -44,7 +44,7 @@ describe('index', () => {
       return pgb.run().then(() => {
         expect(parseArgs).toHaveBeenLastCalledWith(pgb.cliOpts)
         expect(pgb.runCommand).toHaveBeenLastCalledWith({ variables: {}, commands: [ 'command' ] })
-        expect(pgb.handleError).not.toBeCalled()
+        expect(pgb.handleError).not.toHaveBeenCalled()
       })
     })
 
@@ -296,7 +296,7 @@ describe('index', () => {
         pgb.opts.json = false
         pgb.opts.bare = false
         pgb.print({})
-        expect(console.log).not.toBeCalled()
+        expect(console.log).not.toHaveBeenCalled()
       })
 
       test('should print bare', () => {

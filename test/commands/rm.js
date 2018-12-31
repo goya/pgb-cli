@@ -22,7 +22,7 @@ describe('rm', () => {
       .then(command)
       .then(() => {
         expect(validators.args).toHaveBeenLastCalledWith(1)
-        expect(validators.signed_in).toBeCalled()
+        expect(validators.signed_in).toHaveBeenCalled()
         expect(validators.id).toHaveBeenLastCalledWith('12')
       })
   })
@@ -32,8 +32,8 @@ describe('rm', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({ 'bare': '12', 'pretty': 'app 12 deleted' })
-        expect(pgb.api.deleteApp).toBeCalledWith('12')
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': '12', 'pretty': 'app 12 deleted' })
+        expect(pgb.api.deleteApp).toHaveBeenCalledWith('12')
         expect(prompt).not.toHaveBeenCalled()
       })
   })
@@ -42,8 +42,8 @@ describe('rm', () => {
     return Promise.resolve()
       .then(command)
       .then(() => {
-        expect(pgb.print).toBeCalledWith({ 'bare': '12', 'pretty': 'app 12 deleted' })
-        expect(pgb.api.deleteApp).toBeCalledWith('12')
+        expect(pgb.print).toHaveBeenCalledWith({ 'bare': '12', 'pretty': 'app 12 deleted' })
+        expect(pgb.api.deleteApp).toHaveBeenCalledWith('12')
         expect(prompt).toHaveBeenCalledWith('are you sure? [yN] ', { confirm: true })
       })
   })
@@ -54,8 +54,8 @@ describe('rm', () => {
       .then(command)
       .then(done.fail)
       .catch(() => {
-        expect(pgb.print).not.toBeCalled()
-        expect(pgb.api.deleteApp).not.toBeCalled()
+        expect(pgb.print).not.toHaveBeenCalled()
+        expect(pgb.api.deleteApp).not.toHaveBeenCalled()
         expect(prompt).toHaveBeenCalledWith('are you sure? [yN] ', { confirm: true })
         done()
       })
@@ -73,6 +73,6 @@ describe('rm', () => {
   test('should support completion', () =>
     Promise.resolve()
       .then(command.completion)
-      .then(() => expect(complete.app).toBeCalled())
+      .then(() => expect(complete.app).toHaveBeenCalled())
   )
 })
